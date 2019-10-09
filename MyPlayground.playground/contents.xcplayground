@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='macos'>
+    <pages>
+        <page name='基础数据结构-栈'/>
+        <page name='基础数据结构-队列'/>
+        <page name='基础数据结构-链表'/>
+        <page name='基础数据结构-二叉树'/>
+        <page name='基础算法-插入排序'/>
+        <page name='基础算法-归并排序'/>
+        <page name='基础算法-快速排序'/>
+        <page name='基础算法-二分查找'/>
+        <page name='基础算法-插值查找'/>
+        <page name='基础算法-斐波那契查找'/>
+        <page name='基础算法-树表查找'/>
+    </pages>
+</playground>
