@@ -1,8 +1,13 @@
-//: [Previous](@previous)
+//
+//  BST.swift
+//  Swift_BST
+//
+//  Created by leon on 2019/10/10.
+//  Copyright © 2019 Leonidas. All rights reserved.
+//
 
-import Foundation
+import Cocoa
 
-var str = "BST"
 
 // 节点定义
 public class TreeNode  {
@@ -26,7 +31,7 @@ class BST : NSObject {
         super.init()
     }
     
-    public func isEmpty()-> Bool {
+    func isEmpty()-> Bool {
         return count == 0
     }
     
@@ -97,7 +102,6 @@ class BST : NSObject {
             //右
             return containNode(E: E, node: node?.right)
         }
-        
     }
     
     //二分搜索树的前序遍历
@@ -169,8 +173,11 @@ class BST : NSObject {
         if node?.left == nil {
             return node!
         }
-        
-        return minimum(node: node?.left)
+        var minnode = node
+        while minnode?.left != nil {
+            minnode = minnode?.left
+        }
+        return minnode!
     }
     
     // 寻找二分搜索树的最大元素
@@ -178,17 +185,17 @@ class BST : NSObject {
         if count == 0 {
             return Int.max
         }
-        
         return maximum(node: root).E
     }
+    
     //查找最小数据 递归算法
     private
     func maximum(node:Node?) -> Node{
-        if node?.right == nil {
-            return node!
+        var maxnode = node
+        while maxnode?.right != nil {
+            maxnode = maxnode?.right
         }
-        
-        return maximum(node: node?.right)
+        return maxnode!
     }
     
     
@@ -215,6 +222,24 @@ class BST : NSObject {
         return node
     }
     
+    func removeMax() -> Int {
+        if count == 0 {
+            return Int.max
+        }
+        root = removeMax(node: root)
+        return maximum()
+    }
+    
+    private func removeMax(node: Node?) -> Node? {
+        if node?.right == nil {
+            count -= 1
+            let leftNode = node?.left
+            node?.left = nil
+            return leftNode
+        }
+        node?.right = removeMax(node: node?.right)
+        return node!
+    }
     
     
     // 删除为E的节点
@@ -266,17 +291,5 @@ class BST : NSObject {
         }
     }
 }
-var tree = BST()
-tree.add(E: 100)
-tree.add(E: 1)
-tree.add(E: 2)
-tree.add(E: 3)
-tree.add(E: -1)
-tree.add(E: -11)
-tree.preOrder()
-
-tree.remove(E: 100)
-tree.inOrder()
 
 
-//: [Next](@next)
